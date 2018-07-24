@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- as this page is rendered only if the user is logged in, we know
+     we have some user in current_user -->
+{% block app_content %}
+    <!-- Checking if the form object exists is necessary. Sometimes this template will
+         receive a form object, sometimes it won't
+    -->
+
+  <div class="row">
+       <div class="col-md-9">
+         <h2>Orders</h2>
+         {% if data %}
+          {{ data | safe }}
+         {% endif %}
+         <nav aria-label="...">
+             <ul class="pager">
+                 <li class="previous{% if not prev_url %} disabled{% endif %}">
+                     <a href="{{ prev_url or '#' }}">
+                         <span aria-hidden="true">&larr;</span> Previous
+                     </a>
+                 </li>
+                 <li class="next{% if not next_url %} disabled{% endif %}">
+                     <a href="{{ next_url or '#' }}"> Next <span aria-hidden="true">&rarr;</span>
+                     </a>
+                 </li>
+             </ul>
+         </nav>
+      </div>
+      <div class="col-md-3">
+         <div>
+         <h2>Basic Stats</h2>
+          {% if stats %}
+            {{ stats | safe }}
+          {% endif %}
+         </div>
+         <div>
+         <img src="data:image/png;base64,{{ image }}" width=300 height=400>
+         </div>
+     </div>
+
+
+
+{% endblock %}

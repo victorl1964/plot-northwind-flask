@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+<!-- as this page is rendered only if the user is logged in, we know
+     we have some user in current_user -->
+{% block app_content %}
+    <!-- Checking if the form object exists is necessary. Sometimes this template will
+         receive a form object, sometimes it won't
+    -->
+  <div class="container">
+
+    <!--
+    This container displays 2 columns in a row, the second wider than the first
+    -->
+    <!--
+    <div>
+      {% if form %}
+        {{ wtf.quick_form(form) }}
+      {% endif %}
+    </div>
+  -->
+
+    <div class="row">
+         <div class="col-md-3">
+           {% if form %}
+             {{ wtf.quick_form(form) }}
+           {% endif %}
+        </div>
+         <div class="col-md-9">
+        </div>
+    </div>
+
+    <div class="row">
+         <div class="col-md-8" align="center">
+           <!--
+           <img src="data:image/png;base64,{{ image }}" height="500" width="{{width}}">
+         -->
+           <img src="data:image/png;base64,{{ image }}">
+        </div>
+
+         <div class="col-md-4" alight="left">
+
+             {% if data %}
+              {{ data | safe }}
+             {% endif %}
+
+        </div>
+    </div>
+
+
+   </div>
+
+{% endblock %}

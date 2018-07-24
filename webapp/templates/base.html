@@ -1,0 +1,122 @@
+{% extends 'bootstrap/base.html' %}
+
+<!-- This template have three main components: a title, a navigation bar, and a page content -->
+<!-- TITLE BLOCK. Title comes from routes.py, render_template statement -->
+
+
+{% block title %}
+    {% if title %}{{ title }} - Orders Analysis System{% else %}Welcome to Orders Analysis System{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    <!-- this was necessary to overcome some flask-bootstrap bugs, such as dropdown-menu
+         not working -->
+    <!--{{super()}}-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+{% endblock %}
+
+
+<!-- NAVIGATION BAR -->
+{% block navbar %}
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container">
+            <div class="navbar-header">
+              <!--
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+            -->
+                <!-- This is sort of a link to the application HOME PAGE, BRAND COMPANY, LOGO, etc-->
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">Northwind DB</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <!--
+                    <li><a href="{{ url_for('main.index') }}">Reload Orders Data</a></li>
+                    <li><a href="{{ url_for('main.index') }}">Stats per Year</a></li>
+                    <li><a href="{{ url_for('main.index') }}">Stats per VENDEDOR</a></li>
+                    <li><a href="{{ url_for('main.index') }}">Stats per Product</a></li>
+                  -->
+
+                    <li class="dropdown" id="menu1">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                           Time period
+                           <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='year', reporttype='orders') }}">Orders by Year</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='year', reporttype='money') }}">Revenues by Year</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='quarter', reporttype='orders') }}">Orders by Quarter</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='quarter', reporttype='money') }}">Revenues by Quarter</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='month', reporttype='orders') }}">Orders (last 12 months)</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='month', reporttype='money') }}">Revenues (last 12 months)</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown" id="menu2">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu2">
+                           Employee
+                           <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='employee', reporttype='orders') }}">Orders</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='employee', reporttype='money') }}">Revenues</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown" id="menu3">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu3">
+                           Product
+                           <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ url_for('main.get_products_info', reporttype='units') }}">Units delivered</a></li>
+                          <li><a href="{{ url_for('main.get_products_info', reporttype='money') }}">Revenues</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="menu4">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu4">
+                           Country
+                           <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='country', reporttype='orders') }}">Orders</a></li>
+                          <li><a href="{{ url_for('main.get_orders_info', group_arg='country', reporttype='money') }}">Revenues</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="menu5">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu5">
+                           Misc
+                           <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{ url_for('main.reload') }}">Reload/Refresh data</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+{% endblock %}
+<!--PAGE-CONTENT-->
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block, so every html template
+           must be changed from block content to block app_content in the place they provide i #}
+        {% block app_content %}
+        {% endblock %}
+    </div>
+{% endblock %}
