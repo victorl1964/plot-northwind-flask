@@ -43,9 +43,6 @@ As the main purpose of this project is the exploration of some Python packages o
 the DataScience world, and their integration to web applications, some better practices were not introduced yet,
 So you won't see in this version:
 
-- SQLAlchemy. NO ORM is being used in this release. Dataframe are created and populated in config.py, using raw queries
-  against PostgreSQL
- 
  -No automatic translation. Web interfaces, messages, labels, and the like, are in English (my modest English)
  
  -You won't likely see a good Object Oriented Design. Classes were designed on the fly, as ideas came to my mind,
@@ -60,7 +57,8 @@ So you won't see in this version:
   annotating points in lines, etc. In the main time, they are passed as argument from the model to the helpers functions
   
 
-
+SQLAlchemy support was included at the end of the project, so I decided to keep track of config, routes, and models and routes
+files when no ORM support existed
   
   
 

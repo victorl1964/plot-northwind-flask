@@ -8,9 +8,6 @@ Basic Functional Requirements:
    for the orders/order_detail dataframe is defined, and methods to generate different plots or visualizations 
 
 
-   The first implementation might be made without SQLAlchemy, just by connecting Python with Postgres directly.
-   But is a good idea to use models.py and SQLAlchemy to get the data and store it in the dataframe
-
    This interface should generate or show different links to visualize some plots, using matplotlib
 
 
