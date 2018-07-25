@@ -116,6 +116,7 @@ def reload():
     orders=OrderDfs()
     orders.load_orders_only(current_app.config['DB'],None,None)
     orders.load_orders_products(current_app.config['DB'],None,None)
+    return redirect(url_for('main.index')) 
 
 
 

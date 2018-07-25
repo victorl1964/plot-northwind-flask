@@ -75,3 +75,16 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.5/dist-packages/flask/app.py", line 1957, in make_response
     'The view function did not return a valid response. The'
 TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2018-07-25 14:17:26,571 INFO: Orders analysis app startup [in /home/victorl/Documents/DIPLOMADO-UPEL-EducacionUniversitaria/TEMAS-o-AREAS/COMPUTER-SCIENCE/EJEMPLOS/PYTHON/FLASK/plot-northwind-flask/webapp/__init__.py:44]
+2018-07-25 14:25:52,648 ERROR: Exception on /orders/reload [GET] [in /usr/local/lib/python3.4/dist-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.4/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.4/dist-packages/flask/app.py", line 1816, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/usr/local/lib/python3.4/dist-packages/flask/app.py", line 1831, in finalize_request
+    response = self.make_response(rv)
+  File "/usr/local/lib/python3.4/dist-packages/flask/app.py", line 1957, in make_response
+    'The view function did not return a valid response. The'
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2018-07-25 15:17:13,133 INFO: Orders analysis app startup [in /home/victorl/Documents/DIPLOMADO-UPEL-EducacionUniversitaria/TEMAS-o-AREAS/COMPUTER-SCIENCE/EJEMPLOS/PYTHON/FLASK/plot-northwind-flask/webapp/__init__.py:44]
